@@ -1,0 +1,19 @@
+{
+  "name": "note-taking-application",
+  "version": "1.0.0",
+  "description": "A command line application that stores and retrieves notes taken",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debbieooo/note-taking-application.git"
+  },
+  "author": "Deborah Oni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/debbieooo/note-taking-application/issues"
+  },
+  "homepage": "https://github.com/debbieooo/note-taking-application#readme"
+}
