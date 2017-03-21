@@ -100,14 +100,30 @@ module.exports={
 
 	listNotes: function(){
 
-  	console.log("note listed");
+    console.log("Please enter your username and the number of Titles you'd like to display");
 
-    prompt.get(['username','content','title'], function(err,results){
+    prompt.get(['username','limit'], function(err,results){
 
-  
-  });
+      var ref= firebase.database().ref().child('Notes');
+      var messagesRef= ref.child(results.username);
 
-	},
+      //console.log(results.limit);
+
+      var limit= parseInt(results.limit);
+
+
+      //messagesRef.child(messageRef.key).set(message);
+      messagesRef.orderByKey().limitToLast(limit).on('child_added',function(snap){
+      //console.log('added', snap.val());
+      console.log(snap.val().title);
+
+      })
+
+    });
+
+
+  },
+
 
 
 	searchNote: function(){
