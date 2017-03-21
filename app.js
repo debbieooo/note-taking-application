@@ -40,14 +40,50 @@ module.exports={
 
 	viewNote: function(){
 
-  	console.log("note viewed");
+    console.log("Please enter your username ");
+        prompt.get(['username'], function(err,results){
+          
+          var ref= firebase.database().ref().child('Notes');
+          var messagesRef= ref.child(results.username);
 
-    prompt.get(['username','content','title'], function(err,results){
+          //messagesRef.child(messageRef.key).set(message);
+          messagesRef.orderByKey().once('value',function(snap){
+          //console.log('added', snap.val());
+          var notes = snap.val();
+            
+            for(var noteKey in notes){
 
-  
-  });
+              console.log("Title:"+ JSON.stringify(notes[noteKey].title));
 
-	},
+            }
+
+        prompt.get(['title'],function(err,results){
+
+          //console.log(messagesRef);
+          //console.log(snap.val());
+
+          messagesRef.orderByChild("title").equalTo(results.title).once("value", function(snap){
+
+          //console.log(messagesRef);
+          //console.log(snap.key);
+          //console.log(snap.val());
+
+            for(var noteKey in snap.val()){
+
+              console.log("Content: "+JSON.stringify(notes[noteKey].content));
+
+            }
+
+
+          });
+
+        });
+    
+        });
+
+      });
+
+  },
 
 
 	deleteNote: function(){
